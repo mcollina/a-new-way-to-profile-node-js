@@ -2,17 +2,16 @@ title: A new way to profile Node.js
 layout: true
 class: no-counter
 <!-- This slide will serve as the base layout for all your slides -->
-.bottom-bar[
-  <a style="float:left;filter:invert(.5)" href="http://nearform.com"><img src="nearform.svg" alt="nearForm" height="32"></a>
-  <div style='float:right;margin-top:.6em;letter-spacing:.03em'>
+.bottom-bar-left[
+  <a href="http://nearform.com">
+    <img src="nearform.svg" alt="nearForm" height="64">
+  </a>
+]
+.bottom-bar-right[
+  <div style='letter-spacing:.03em;padding:1.1em'>
     <div style='font-size:0.6em;line-height:1.2em'>
       <a href=https://twitter.com/matteocollina>
-        <span class=em>@</span>matteocollina 
-      </a>
-    </div>
-    <div style='font-size:0.6em;line-height:1.1em'>
-      <a href=https://twitter.com/davidmarkclem>
-        <span class=em>@</span>davidmarkclem
+        <span class=em>@</span>matteocollina
       </a>
     </div>
   </div>
@@ -24,53 +23,7 @@ class: splash
 # &nbsp;&thinsp;A .em[NEW] WAY <br>TO PROFILE<br> NODE.em[.]JS
 
 <span>Matteo Collina</span>
-<span class=em> & </span>
-<span>David Mark Clements</span>
-<a style="border-top:2px solid #d13787;filter:invert(.125);display:block;width:10em;margin-left:auto;margin-right:auto;padding-top:.4em;margin-top:1.3em;margin-bottom:-2.5em" href="http://nearform.com"><img src="nearform.svg" alt="nearForm" height="52"></a>
-### <u style='display:block;margin-top:2.2em;'><http://nf.ie/a-new-way></u>
----
-
-class: impact 
-
-# Performance
-
-
----
-
-class: impact, perfromance
-
-# Perf.em[r]omance
-
-???
-It has been something of a journey, you might even call it a perf
-romance and wheter is romance or performance, or anything that you
-take for granted these words by the counting crows ring true: ...
-...Don't it always seem to go...
-...That you don't know what you got...
-...Till it's gone...
-... 2, 3, 4 (waits, beats) ...
-...Because one day your phone will ring (pause), and all hell will
-break loose.
-
-
----
-
-class: impact
-
-# Don't it always seem to go...
-
-
----
-
-class: impact
-
-# That you don't know what you got
-
----
-
-class: impact
-
-# Till it's gone
+<a style="border-top:2px solid #fb7a9c;display:block;width:10em;margin-left:auto;margin-right:auto;padding-top:.4em;margin-top:1.3em;margin-bottom:-2.5em" href="http://nearform.com"><img src="nearform.svg" alt="nearForm" height="52"></a>
 ---
 
 class: impact
@@ -138,7 +91,7 @@ class: impact
 
 # Simulating Load
 
-<div class=logo style='background:rgb(127,127,127);margin-bottom:-1em;height:3.9em;margin-top:0.95em;border: 2px solid #d13787;box-sizing:border-box'>
+<div class=logo style='background:rgb(127,127,127);margin-bottom:-1em;height:3.9em;margin-top:0.95em;border: 2px solid #fb7a9c;box-sizing:border-box'>
   .autocannon[![](autocannon.png)]
 </div>
 
@@ -149,13 +102,13 @@ class: impact
 
 # Finding Bottlenecks
 
-.center[.responsive-v[![](opt-process-diagnostics.png)]]
+.center[.responsive-v[![](opt-process.png)]]
 
 ---
 
 # Diagnostics
 
-[.throb[.center[![](clinic.png)]]](http://github.com/nearform/node-clinic)
+[.center[![](clinic.png)]](http://github.com/nearform/node-clinic)
 
 
 ```sh
@@ -201,9 +154,11 @@ class: impact
 .logo[![](doctor.png)]
 </a>
 
-## Collects metrics by .em[injecting probes]
-## Assesses health with .em[heuristics]
-## Creates .em[recommendations]
+Collects metrics by .em1[injecting probes]
+
+Assesses health with .em2[heuristics]
+
+Creates .em3[recommendations]
 
 ---
 
@@ -220,9 +175,13 @@ class: impact
 
 # Clinic Flame
 .logo[![](flame.png)]
-## Collects metrics by .em[CPU sampling]
-## Tracks .em[top-of-stack] frequency
-## Creates .em[flame graphs]
+
+
+Collects metrics by .em1[CPU sampling]
+
+Tracks .em2[top-of-stack] frequency
+
+Creates .em3[flame graphs]
 
 
 ---
@@ -240,9 +199,11 @@ class: impact
 
 .logo[![](bp.png)]
 
-## Collects metrics using .em[async_hooks]
-## Tracks .em[latency] between operations
-## Creates .em[bubble graphs]
+Collects metrics using .em1[async_hooks]
+
+Tracks .em2[latency] between operations
+
+Creates .em3[bubble graphs]
 
 ---
 
@@ -356,7 +317,8 @@ class: impact
 <a href='http://getpino.io'>
 .logo[![](pino.png)]
 </a>
-## High speed .em[logging] library
+<br>
+High speed .em[logging] library
 ]
 
 .col-2[
@@ -372,7 +334,8 @@ class: impact
 <a href='http://fastify.io'>
 .fastify[.logo[![](fastify.png)]]
 </a>
-## High speed .em[web] framework
+<br>
+High speed .em[web] framework
 ]
 
 ---
@@ -394,11 +357,8 @@ class: impact
 class: splash
 
 # .em[Talk] to us!
-## [.em[@]matteocollina](https://twitter.com/matteocollina) 
-## [.em[@]davidmarkclem](https://twitter.com/davidmarkclem)
+## [.em[@]matteocollina](https://twitter.com/matteocollina)
 <span>Matteo Collina</span>
-<span class=em> & </span>
-<span>David Mark Clements</span>
 
 <p style="margin-top:2em"></p>
 
@@ -408,4 +368,4 @@ class: splash
 ]
 
 
-<a style="filter:invert(.125);display:block;width:10em;margin-left:auto;margin-right:auto;padding-top:.8em;margin-top:1.7em;margin-bottom:-2.5em" href="http://nearform.com"><img src="nearform.svg" alt="nearForm" height="52"></a>
+<a style="display:block;width:10em;margin-left:auto;margin-right:auto;padding-top:.8em;margin-top:1.7em;margin-bottom:-2.5em" href="http://nearform.com"><img src="nearform.svg" alt="nearForm" height="104"></a>

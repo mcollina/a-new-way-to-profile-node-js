@@ -1,19 +1,35 @@
+@font-face {
+  font-family: Campton;
+  font-weight: bold;
+  src: url("campton.otf") format("opentype");
+}
+
+@font-face {
+  font-family: Archia;
+  src: url("Archia-Regular.otf") format("opentype");
+}
+
 // Theme
 // ---------------------------------------------------------------------------
 
-$primary          : #272c32;
-$secondary        : #888;
-$tertiary         : #d13787;
+$nearformBlue     : #2165e3;
+$supersplit       : #FB775E;
+$brunchPink       : #fb7a9c;
+$bubblegum        : #F6BAB8;
+
+$primary          : $nearformBlue;
+$secondary        : #6d6d68;
+$tertiary         : $brunchPink;
 $light            : #FFF;
-$dark             : #333;
-$text-dark        : #212121; 
+$dark             : #194caa;
+$text-dark        : $secondary;
 $text-light       : $light;
 $code-background  : $secondary;
 $overlay          : transparentize(#000, .5);
 $font-size        : 28px;
-$font-size-impact : 128px;
-$font             : -apple-system, BlinkMacSystemFont, 'avenir next', avenir, helvetica, 'helvetica neue', ubuntu, roboto, noto, 'segoe ui', arial, sans-serif;
-$font-title       : -apple-system, BlinkMacSystemFont, 'avenir next', avenir, helvetica, 'helvetica neue', ubuntu, roboto, noto, 'segoe ui', arial, sans-serif;
+$font-size-impact : 100px;
+$font             : 'Archia',-apple-system, BlinkMacSystemFont, 'avenir next', avenir, helvetica, 'helvetica neue', ubuntu, roboto, noto, 'segoe ui', arial, sans-serif;
+$font-title       : 'Campton',-apple-system, BlinkMacSystemFont, 'avenir next', avenir, helvetica, 'helvetica neue', ubuntu, roboto, noto, 'segoe ui', arial, sans-serif;
 $font-fixed       : 'Lucida Console', Monaco, monospace;
 $margin           : 20px;
 $iframe-scale     : 1.5;
@@ -111,13 +127,11 @@ pre {
   }
 }
 
-.bottom-bar {
-  background-color: $primary;
+.bottom-bar-left {
   color: $text-light;
   position: absolute;
   bottom: 0;
   left: 0;
-  right: 0;
   font-size: 20px;
   padding: .4em;
   text-align: left;
@@ -126,6 +140,18 @@ pre {
   .splash & {display:none;}
 }
 
+.bottom-bar-right {
+  color: $text-light;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 20px;
+  padding: .4em;
+  text-align: right;
+  z-index: 2;
+  p { margin: 0;}
+  .splash & {display:none;}
+}
 
 // Utilities
 // ---------------------------------------------------------------------------
@@ -162,14 +188,6 @@ pre {
 .logo > img { max-width:100%;max-height:9rem; }
 @keyframes blinker { 50%{opacity:0} }
 
-@keyframes throb {
-  50% {filter: hue-rotate(0deg) contrast(100%)}
-}
-
-.throb img {
-  filter: hue-rotate(101deg) contrast(131%);
-  animation: throb 5s ease infinite;
-}
 .blink-2 {
   animation: blinker 2s linear infinite;
   color: $light;
@@ -275,5 +293,16 @@ pre {
   filter: invert(1)
 }
 
+.em3 {
+  color: $supersplit;
+}
+
+.em1 {
+  color: $bubblegum;
+}
+
+.em2 {
+  color: $brunchPink;
+}
 
 .team > img { width: auto; height: 50vh; };
