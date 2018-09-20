@@ -6,6 +6,7 @@
   "scripts": {
     "start": "bs s",
     "html": "bs e && cp *-demo.html dist && mv dist/presentation.html dist/index.html && rm dist/readme.html",
+    "docs": "npm run html && mv dist docs",
     "pdf": "bs p"
   },
   "repository": {
