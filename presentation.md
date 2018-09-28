@@ -20,7 +20,7 @@ class: no-counter
 ---
 class: splash
 <p style='margin-top:-1em'></p>
-# &nbsp;&thinsp;A .em[NEW] WAY <br>TO PROFILE<br> NODE.em[.]JS
+# &nbsp;&thinsp;A .em[new] way <br>to profile<br> Node.em[.]js
 
 <span>Matteo Collina</span>
 <a style="border-top:2px solid #fb7a9c;display:block;width:10em;margin-left:auto;margin-right:auto;padding-top:.4em;margin-top:1.3em;margin-bottom:-2.5em" href="http://nearform.com"><img src="nearform.svg" alt="nearForm" height="52"></a>
@@ -29,9 +29,9 @@ class: splash
 class: impact
 
 # .blink-2[🚨]
-## .blink-1[MAXIMUM NUMBER OF SERVERS] 
-## .blink-1[SALES TRAFFIC DROPPING]
-## .blink-1[ANGRY PEOPLE ARE ANGRY]
+## .blink-1[Maximum number of servers] 
+## .blink-1[sales traffic dropping]
+## .blink-1[angry people are angry]
 
 ---
 
@@ -55,8 +55,9 @@ class: impact
 .col-5[
 ## The bottleneck is .em[internal]
 <br>
-## The Node.js process
-## is on fire
+The Node.js process
+<br>
+is on fire
 ]
 
 .col-2[
@@ -70,8 +71,9 @@ class: impact
 .col-5[
 ## The bottleneck is .em[external]
 <br>
-## Something else
-## is on fire
+Something else
+<br>
+is on fire
 ]
 
 ---
@@ -228,7 +230,10 @@ class: impact
 .col-5[
 ## Clinic Flame
 .logo[![](flame.png)]
-## For .em[internal] bottlenecks
+
+.center[
+For .em[internal] bottlenecks
+]
 
 ]
 
@@ -243,7 +248,10 @@ class: impact
 .col-5[
 ## Clinic Bubbleprof
 .logo[![](bp.png)]
-## For .em[external] bottlenecks
+
+.center[
+For .em[external] bottlenecks
+]
 ]
 
 
