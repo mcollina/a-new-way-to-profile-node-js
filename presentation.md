@@ -110,8 +110,7 @@ class: impact
 
 # Diagnostics
 
-[.center[![](clinic.png)]](http://github.com/nearform/node-clinic)
-
+[.responsive[![](clinic.png)]](http://github.com/nearform/node-clinic)
 
 ```sh
 $ npm install -g clinic
@@ -127,21 +126,21 @@ $ npm install -g clinic
 
 .col-4[
 <a href=http://github.com/nearform/node-clinic-doctor>
-.logo[![](doctor.png)]
+.logo[![](doctor.svg)]
 ## Clinic Doctor 
 </a>
 ]
 
 .col-4[
 <span>
-.logo[![](bp.png)] 
+.logo[![](bp.svg)] 
 ## Clinic Bubbleprof 
 </span>
 ]
 
 .col-4[
 <a href=http://github.com/davidmarkclements/0x>
-.logo[![](flame.png)]
+.logo[![](flame.svg)]
 ## Clinic Flame 
 </a>
 ]
@@ -153,7 +152,7 @@ class: impact
 
 # Clinic Doctor
 <a href=http://github.com/nearform/node-clinic-doctor>
-.logo[![](doctor.png)]
+.logo[![](doctor.svg)]
 </a>
 
 Collects metrics by .em1[injecting probes]
@@ -176,7 +175,7 @@ class: impact
 class: impact
 
 # Clinic Flame
-.logo[![](flame.png)]
+.logo[![](flame.svg)]
 
 
 Collects metrics by .em1[CPU sampling]
@@ -199,7 +198,7 @@ class: impact
 
 # Clinic Bubbleprof
 
-.logo[![](bp.png)]
+.logo[![](bp.svg)]
 
 Collects metrics using .em1[async_hooks]
 
@@ -219,7 +218,7 @@ Creates .em3[bubble graphs]
 class: impact
 
 <a href=http://github.com/nearform/node-clinic-doctor>
-.logo[![](doctor.png)]
+.logo[![](doctor.svg)]
 </a>
 # .em[Where] is the bottleneck?
 
@@ -229,7 +228,7 @@ class: impact
 <p style="padding:.1em"></p>
 .col-5[
 ## Clinic Flame
-.logo[![](flame.png)]
+.logo[![](flame.svg)]
 
 .center[
 For .em[internal] bottlenecks
@@ -247,7 +246,7 @@ For .em[internal] bottlenecks
 
 .col-5[
 ## Clinic Bubbleprof
-.logo[![](bp.png)]
+.logo[![](bp.svg)]
 
 .center[
 For .em[external] bottlenecks
@@ -263,40 +262,146 @@ class: impact
 
 .col-4[
 <a href=http://github.com/nearform/node-clinic-doctor>
-.logo[![](doctor.png)]
+.logo[![](doctor.svg)]
 </a>
 ]
 
 .col-4[
 <span>
-.logo[![](bp.png)] 
+.logo[![](bp.svg)] 
 </span>
 ]
 
 .col-4[
 <a href=http://github.com/davidmarkclements/0x>
-.logo[![](flame.png)]
+.logo[![](flame.svg)]
 </a>
 ]
-.col-12[
-  <p style="margin-top:1em"></p>
-  ## .em[Interact:] <u><http://nf.ie/interact></u>
-]
-
----
-
-.center[
-  ![](shaggy.gif)
-]
-
 
 ---
 
 class: impact
 
-<h1 style='margin-top:-0.25em'>The .em[Team]</h1>
+# How can we improve the .em[performance] of our Node.em[.]js apps?
 
-.team[![](clinic-team.jpg)]
+---
+
+class: impact
+
+# The Event Loop
+
+---
+
+```
+   ┌───────────────────────────┐
+┌─>│           timers          │
+│  └─────────────┬─────────────┘
+│  ┌─────────────┴─────────────┐
+│  │     pending callbacks     │
+│  └─────────────┬─────────────┘
+│  ┌─────────────┴─────────────┐
+│  │       idle, prepare       │
+│  └─────────────┬─────────────┘      ┌───────────────┐
+│  ┌─────────────┴─────────────┐      │   incoming    │
+│  │           poll            │<─────┤  connections, │
+│  └─────────────┬─────────────┘      │   data, etc.  │
+│  ┌─────────────┴─────────────┐      └───────────────┘
+│  │           check           │
+│  └─────────────┬─────────────┘
+│  ┌─────────────┴─────────────┐
+└──┤      close callbacks      │
+   └───────────────────────────┘
+
+```
+
+Source: https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/
+
+---
+
+<img src="./eventloop.png" style="height: 20em"></img>
+
+---
+class: impact
+
+# The life of an .em[event]
+
+<div style="width: 80%; margin: auto">
+<ol style="padding: 0.2em">
+  <li>JS adds a <em>function</em> as a listener for an I/O event</li>
+  <li>The <em>I/O event</em> happens</li>
+  <li>The specified function is <em>called</em></li>
+</ol>
+</div>
+---
+
+## In Node.js, there is .em[no parallelism] of function execution.
+
+---
+
+## <code>nextTick</code>, <code>Promises</code>, <code>setImmediate</code>
+
+
+<div style="width: 80%; margin: auto">
+<ol style="padding: 0.2em">
+<li><code>nextTicks</code> are <em>always</em> executed <em>before</em> <code>Promises</code> and other <em>I/O events</em>.</li>
+
+<li><code>Promises</code> are <em>executed synchronously</em> and <em>resolved asynchronously</em>, before any other I/O events.</li>
+
+<li><code>setImmediate</code> exercise the same <em>flow</em> of <em>I/O events</em>.</li>
+</div>
+---
+    <!--
+      People are not paying enough attention when a given chunk of code is running
+      relative to another chunk of code. Unless you can see it where the branch
+      points are, they are not seeing the impact of any changes.
+    -->
+<div style="width: 80%; margin: auto">
+The <em>hardest</em> concept in Node.js is to know when a chunk of <em>code</em> is running relative to <em>another</em>.
+</div>
+
+<br>
+
+# .em[Clinicjs] can help you in understanding how your Node.js application .em[works]
+
+---
+
+class: impact
+
+# Performance Considerations
+
+---
+
+<h2>
+As a result of a .em[slow] I/O operation, <br>your application
+.em[increase] the amount of <br>.em[concurrent] tasks.
+</h2>
+
+---
+
+<h2>
+A huge amount of .em[concurrent] tasks .em[increase]
+the .em[memory consumption] of your application.
+</h2>
+
+---
+
+<h2>
+An increase in .em[memory consumption] increase the amount
+of work the .em[garbage collector] (GC) needs to do on our CPU.
+</h2>
+
+---
+
+<h2>
+Under high load, the .em[GC] will .em[steal CPU cycles]
+from our JavaScript critical path.
+</h2>
+
+---
+
+<h2>
+Therefore, .em[latency]</em> and .em[throughput] are .em[connected]
+</h2>
 
 ---
 
@@ -340,7 +445,7 @@ High speed .em[logging] library
 .col-5[
 ## Fastify
 <a href='http://fastify.io'>
-.fastify[.logo[![](fastify.png)]]
+.invert[.logo[![](fastify.png)]]
 </a>
 <br>
 High speed .em[web] framework
@@ -360,20 +465,23 @@ High speed .em[web] framework
 
 .center[.responsive-v[![](ludicrous.gif)]]
 
+---
+class: splash
+
+## Do you need .em[help] <br>with your .em[Node.js] application?
+
+<a style="display:block;width:10em;margin-left:auto;margin-right:auto;padding-top:.8em;margin-top:1.7em;margin-bottom:-2.5em" href="http://nearform.com"><img src="nearform.svg" alt="nearForm" height="104"></a>
 
 ---
 class: splash
 
-# .em[Talk] to us!
-## [.em[@]matteocollina](https://twitter.com/matteocollina)
-<span>Matteo Collina</span>
+# Questions? 
 
-<p style="margin-top:2em"></p>
+.em[@]matteocollina
 
-.center[
-  <h3 style='color:white;margin-bottom:0.1em'>Let us .em[know] your .em[thoughts]</h3>
-  #### <u><https://nf.ie/BPFB></u>
-]
+---
+class: splash
 
+# Thanks
 
-<a style="display:block;width:10em;margin-left:auto;margin-right:auto;padding-top:.8em;margin-top:1.7em;margin-bottom:-2.5em" href="http://nearform.com"><img src="nearform.svg" alt="nearForm" height="104"></a>
+.em[@]matteocollina
